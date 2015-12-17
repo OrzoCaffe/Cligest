@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Elenco Modalita di pagamento</title>
+    </h:head>
+    <h:body>
+        <h2 style="font-family: cursive; font-weight: bold" align="center">Elenco delle modalit&agrave; di pagamento</h2>
+        <h:form>
+            <p:dataTable value="#{pagamentoPresenter.elencoModalitaDiPagamento()}" var="pagamento">
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{pagamento.tipo}"/>
+                </p:column>
+                <p:column headerText="Fra Quanto Pago">
+                    <h:outputText value="#{pagamento.fraQuantoPago}"/>
+                </p:column>
+                <p:column headerText="Azioni">
+                    <h:commandButton value="Modifica" action="#{pagamentoPresenter.dettaglioModalitaDiPagamento(pagamento.id)}"/>
+                    <h:commandButton value="Elimina" action="#{pagamentoPresenter.eliminaModalitaDiPagamento(pagamento)}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h:form>
+            <h:commandButton value="Crea nuova modalita" action="#{pagamentoPresenter.dettaglioModalitaDiPagamento(null)}"/>
+            <h:button value="Home" outcome="index" />
+        </h:form>
+    </h:body>
+</html>
+
+

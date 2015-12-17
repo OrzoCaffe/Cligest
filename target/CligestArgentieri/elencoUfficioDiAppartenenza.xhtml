@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Elenco Uffici</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:dataTable value="#{ufficioPresenter.elencoUfficioDiAppartenenza()}" var="ufficio">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{ufficio.nomeUfficio}"/>
+                </p:column>
+                <p:column headerText="Azioni">
+                    <h:commandButton value="Modifica" action="#{ufficioPresenter.dettaglioUfficioDiAppartenenza(ufficio.id)}"/>
+                    <h:commandButton value="Elimina" action="#{ufficioPresenter.eliminaUfficioDiAppartenenza(ufficio)}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h:form>
+            <h:commandButton value="Inserisci nuovo ufficio" action="#{ufficioPresenter.dettaglioUfficioDiAppartenenza(null)}"/>
+            <h:button value="Home" outcome="index" />
+        </h:form>
+    </h:body>
+</html>
+

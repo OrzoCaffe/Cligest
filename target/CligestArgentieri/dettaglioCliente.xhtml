@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Dati Cliente</title>
+    </h:head>
+    <h:body>
+        <h2 style="font-family: cursive; font-weight: bold" align="center">Inserisci i dati del Cliente</h2><br></br>
+        <h2>-------------------------ELENCO STABILIMENTI--------------------------------</h2>
+        <h:form>
+            <h:commandButton value="Nuovo Stabilimento" action="#{clientePresenter.creaStabilimento()}"/>
+        </h:form>
+        <h:form>
+            <p:dataTable value="#{clientePresenter.cliente.stabilimenti}" var="stab">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{stab.nome}"/>
+                </p:column>
+                <p:column headerText="Indirizzo">
+                    <h:outputText value="#{stab.indirizzo}"/>
+                </p:column>
+                <p:column headerText="Numero di telefono">
+                    <h:outputText value="#{stab.numeroDiTelefono}"/>
+                </p:column>
+                <p:column headerText="Numero di fax">
+                    <h:outputText value="#{stab.numeroDiFax}"/>
+                </p:column>
+                <p:column headerText="Azioni">
+                    <h:commandButton value="Modifica" action="#{clientePresenter.dettaglioStabilimento(stab)}"/>
+                    <h:commandButton value="Elimina" action="#{clientePresenter.eliminaStabilimento(stab)}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h2>-------------------------ELENCO PERSONE DI RIFERIMENTO--------------------------------</h2>
+        <h:form>
+            <h:commandButton value="Nuova Persona di riferimento" action="#{clientePresenter.creaPersonaDiRiferimento()}"/>
+        </h:form>
+        <h:form>
+            <p:dataTable value="#{clientePresenter.cliente.personeDiRiferimento}" var="persone">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{persone.nome}"/>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{persone.postaElettronica}"/>
+                </p:column>
+                <p:column headerText="Numero di telefono">
+                    <h:outputText value="#{persone.cellulare}"/>
+                </p:column>
+                <p:column headerText="Ufficio di Appartenenza">
+                    <h:outputText value="#{persone.ufficioDiAppartenenza.nomeUfficio}"/>
+                </p:column>
+                <p:column headerText="Azioni">
+                    <h:commandButton value="Modifica" action="#{clientePresenter.dettaglioPersonaDiRiferimento(persone)}"/>
+                    <h:commandButton value="Elimina" action="#{clientePresenter.eliminaPersonaDiRiferimento(persone)}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <br></br>
+        <h:form>
+            <h:outputLabel for="ragsociale">Ragione Sociale</h:outputLabel><br/>
+            <h:inputText id="ragsociale" value="#{clientePresenter.cliente.ragioneSociale}"/><br/>
+            <h:outputLabel for="nomignolo">Alias</h:outputLabel><br/>
+            <h:inputText id="nomignolo" value="#{clientePresenter.cliente.nomeBreve}"/><br/>
+            <h:outputLabel for="web">Indirizzio web</h:outputLabel><br/>
+            <h:inputText id="web" value="#{clientePresenter.cliente.indirizzoWeb}"/><br/>
+            <h:outputLabel for="areanote">Note</h:outputLabel><br/>
+            <h:inputTextarea id="areanote" value="#{clientePresenter.cliente.note}"/><br/>
+            <h:outputLabel for="conv" value="Modalita di pagamento: " />
+            <h:selectOneMenu id="conv" value="#{clientePresenter.cliente.modalitaDiPagamento}" converter="omnifaces.SelectItemsIndexConverter">
+                <f:selectItem value="#{null}" itemLabel="Scegli modalita di pagamento" />
+                <f:selectItems value="#{pagamentoPresenter.elencoModalitaDiPagamento()}" var="pagamento" itemLabel="#{pagamento.tipo}" itemValue="#{pagamento}" />
+            </h:selectOneMenu><br/>
+            <h:commandButton value="Salva" action="#{clientePresenter.salvaCliente()}"/>
+            <h:button value="Home" outcome="index" />
+        </h:form>
+    </h:body>
+</html>
+

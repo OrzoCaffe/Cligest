@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Persona Di Riferimento</title>
+    </h:head>
+    <h:body>
+        <h2 style="font-family: cursive; font-weight: bold" align="center">Inserisci i dati per la persona di riferimento</h2>
+        <h:form>
+            <h:outputLabel for="nome" >Nome</h:outputLabel><br/>
+            <h:inputText id="nome" value="#{clientePresenter.personaDiRiferimento.nome}"/><br/>
+            <h:outputLabel for="email" >Email</h:outputLabel><br/>
+            <h:inputText id="email" value="#{clientePresenter.personaDiRiferimento.postaElettronica}"/><br/>
+            <h:outputLabel for="cellulare" >N.Telefono</h:outputLabel><br/>
+            <h:inputText id="cellulare" value="#{clientePresenter.personaDiRiferimento.cellulare}"/><br/>
+            <h:outputLabel for="conv" value="Ufficio di appartenenza: " /><br/>
+            <h:selectOneMenu id="conv" value="#{clientePresenter.personaDiRiferimento.ufficioDiAppartenenza}" converter="omnifaces.SelectItemsIndexConverter">
+                <f:selectItem value="#{null}" itemLabel="Scegli ufficio" />
+                <f:selectItems value="#{ufficioPresenter.elencoUfficioDiAppartenenza()}" var="nomeufficio" itemLabel="#{nomeufficio.nomeUfficio}" itemValue="#{nomeufficio}" />
+            </h:selectOneMenu><br/>
+            <h:commandButton value="Salva" action="#{clientePresenter.salvaPersonaDiRiferimento()}"/>
+            <h:button value="Home" outcome="index" />
+            <h:button value="Indietro" outcome="dettaglioCliente" />
+        </h:form>
+    </h:body>
+</html>
+

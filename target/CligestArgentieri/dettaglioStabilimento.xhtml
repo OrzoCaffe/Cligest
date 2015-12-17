@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Stabilimento</title>
+    </h:head>
+    <h:body>
+        <h2 style="font-family: cursive; font-weight: bold" align="center">Inserisci i dati per lo stabilimento</h2>
+        <h:form>
+            <h:outputLabel for="nome" >Nome</h:outputLabel><br/>
+            <h:inputText id="nome" value="#{clientePresenter.stabilimento.nome}"/><br/>
+            <h:outputLabel for="indirizzo" >Indirizzo</h:outputLabel><br/>
+            <h:inputText id="indirizzo" value="#{clientePresenter.stabilimento.indirizzo}"/><br/>
+            <h:outputLabel for="telefono" >N.Telefono</h:outputLabel><br/>
+            <h:inputText id="telefono" value="#{clientePresenter.stabilimento.numeroDiTelefono}"/><br/>
+            <h:outputLabel for="fax" >N.Fax</h:outputLabel><br/>
+            <h:inputText id="fax" value="#{clientePresenter.stabilimento.numeroDiFax}"/><br/>
+            <h:commandButton value="Salva" action="#{clientePresenter.salvaStabilimento()}"/>
+            <h:button value="Home" outcome="index" />
+            <h:button value="Indietro" outcome="dettaglioCliente" />
+        </h:form>
+    </h:body>
+</html>
+
